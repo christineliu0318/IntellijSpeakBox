@@ -1,4 +1,4 @@
-package com.example.SpeakBox;
+package speakbox.util;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.RadioButton;
+import com.example.SpeakBox.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import speakbox.util.CheckRecentRun;
 
 import java.util.ArrayList;
 
@@ -197,13 +199,13 @@ public class SpeakBox extends Activity {
 
         String xaxis = "Time";
         if (radio1Pressed) {
-            //TODO: add it to a list of question answers
+            //TODO: add it to a list of Question answers
         } else if (radio2Pressed) {
-            //TODO: add it to a list of question answers
+            //TODO: add it to a list of Question answers
         } else if (radio3Pressed) {
-            //TODO: add it to a list of question answers
+            //TODO: add it to a list of Question answers
         } else if (radio4Pressed) {
-            //TODO: add it to a list of question answers
+            //TODO: add it to a list of Question answers
         } else if (radio5Pressed){
             //TODO
         }

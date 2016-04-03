@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="SpeakBox"
+        <activity android:name="speakbox.util.SpeakBox"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
         <service
-                android:name="com.example.SpeakBox.CheckRecentRun" >
+                android:name="speakbox.util.CheckRecentRun" >
         </service>
     </application>
 </manifest>
