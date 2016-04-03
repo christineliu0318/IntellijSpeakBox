@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                tools:context=".QuestionBox" android:id="@+id/DisplayQuestionView">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hello"
+            android:id="@+id/HelloUserTextView" android:layout_alignBottom="@+id/MessagePendingTextView"
+            android:layout_alignStart="@+id/MessagePendingTextView" android:layout_marginBottom="70dp"
+            android:textSize="40dp" android:textStyle="bold"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On a scale of 1-5, how are you feeling?"
+            android:id="@+id/MessagePendingTextView"
+            android:layout_marginTop="149dp"
+            android:textSize="24dp" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+            android:layout_gravity="center" android:textAlignment="center" android:textStyle="bold"/>
+
+    <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar" android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/MessagePendingTextView" android:layout_alignParentEnd="true" android:max="5"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/SubmitButton"
+            android:onClick="submitAnswer"
+            android:layout_below="@+id/seekBar" android:layout_centerHorizontal="true" android:layout_marginTop="74dp"/>
+
+</RelativeLayout>

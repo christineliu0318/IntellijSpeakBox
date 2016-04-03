@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
 import com.example.SpeakBox.R;
@@ -21,6 +22,9 @@ import speakbox.util.CheckRecentRun;
 
 import java.util.ArrayList;
 
+/**
+ * Main Activity
+ */
 
 public class SpeakBox extends Activity {
 
@@ -177,40 +181,6 @@ public class SpeakBox extends Activity {
         LineData data = new LineData(xVals, dataSets);
 
         return data;
-    }
-    /**
-     * This method is called when the submit button is clicked.
-     */
-    public void submitAnswer(View view) {
-        RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
-        boolean radio1Pressed = radio1.isPressed();
-
-        RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-        boolean radio2Pressed = radio2.isPressed();
-
-        RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
-        boolean radio3Pressed = radio3.isPressed();
-
-        RadioButton radio4 = (RadioButton) findViewById(R.id.radioButton4);
-        boolean radio4Pressed = radio4.isPressed();
-
-        RadioButton radio5 = (RadioButton) findViewById(R.id.radioButton5);
-        boolean radio5Pressed = radio5.isPressed();
-
-        String xaxis = "Time";
-        if (radio1Pressed) {
-            //TODO: add it to a list of Question answers
-        } else if (radio2Pressed) {
-            //TODO: add it to a list of Question answers
-        } else if (radio3Pressed) {
-            //TODO: add it to a list of Question answers
-        } else if (radio4Pressed) {
-            //TODO: add it to a list of Question answers
-        } else if (radio5Pressed){
-            //TODO
-        }
-
-
     }
 
 }

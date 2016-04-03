@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                tools:context=".QuestionBox" android:id="@+id/DisplayQuestionView">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Thank you,"
+            android:id="@+id/ThankUserTextView" android:layout_alignBottom="@+id/MessagePendingTextView"
+            android:layout_alignStart="@+id/MessagePendingTextView" android:layout_marginBottom="70dp"
+            android:textSize="40sp" android:textStyle="bold"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We will talk to you later"
+            android:id="@+id/MessagePendingTextView"
+            android:layout_marginTop="149dp"
+            android:textSize="24dp" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+            android:textAlignment="center" android:textStyle="bold"
+            android:layout_alignParentStart="true"/>
+
+</RelativeLayout>

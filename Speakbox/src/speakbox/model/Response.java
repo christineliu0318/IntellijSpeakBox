@@ -17,8 +17,8 @@ public class Response {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         Calendar cal = Calendar.getInstance();
         this.responseDate = sdf.format(cal.getTime());
-        this.questionId = questionId;
         this.answer = answer;
+        this.questionId = questionId;
 
         user.addResponse(this);
     }
