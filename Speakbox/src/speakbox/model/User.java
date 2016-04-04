@@ -8,6 +8,7 @@ import java.util.List;
  * Created by YingYing on 2016-04-02.
  * User information
  */
+
 public class User {
     private String name;
     private String gender;

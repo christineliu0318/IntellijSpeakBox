@@ -3,10 +3,16 @@
           package="com.example.SpeakBox"
           android:versionCode="1"
           android:versionName="1.0">
+
     <uses-sdk android:minSdkVersion="21"/>
+
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/CustomTheme">
+
 
         <activity android:name="speakbox.util.SpeakBox"
                   android:label="@string/app_name">
@@ -15,6 +21,7 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
         <service
                 android:name="speakbox.util.CheckRecentRun" >

@@ -16,6 +16,7 @@ public class Question {
         this.questionId = UUID.randomUUID().toString();
     }
 
+    // should probably be placed in the QuestionDisplayFragment
     public void userAnswersQuestion(User user) {
         Double answer = 5.00; //whatever the user inputs into the text view
         response = new Response(questionId, answer, user);

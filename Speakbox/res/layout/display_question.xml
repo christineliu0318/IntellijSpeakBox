@@ -1,41 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                tools:context=".QuestionBox" android:id="@+id/DisplayQuestionView">
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:textAlignment="center" android:id="@+id/dqFragment">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello,  "
+            android:id="@+id/helloTextView" android:layout_alignParentTop="true" android:layout_alignParentStart="false"
+            android:layout_marginStart="50dp" android:layout_marginTop="110dp" android:textSize="40dp"
+            android:layout_alignParentEnd="false" android:layout_marginLeft="50dp"
+        android:textStyle="bold" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hello"
-            android:id="@+id/HelloUserTextView" android:layout_alignBottom="@+id/MessagePendingTextView"
-            android:layout_alignStart="@+id/MessagePendingTextView" android:layout_marginBottom="70dp"
-            android:textSize="40dp" android:textStyle="bold"/>
-
-
+            android:text="Name"
+            android:id="@+id/userNameTextView"
+            android:textSize="40dp" android:layout_alignTop="@+id/helloTextView"
+            android:layout_alignParentEnd="true" android:layout_marginRight="50dp"
+            android:layout_toEndOf="@+id/helloTextView"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="On a scale of 1-5, how are you feeling?"
-            android:id="@+id/MessagePendingTextView"
-            android:layout_marginTop="149dp"
-            android:textSize="24dp" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
-            android:layout_gravity="center" android:textAlignment="center" android:textStyle="bold"/>
-
-    <SeekBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar" android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/MessagePendingTextView" android:layout_alignParentEnd="true" android:max="5"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/SubmitButton"
-            android:onClick="submitAnswer"
-            android:layout_below="@+id/seekBar" android:layout_centerHorizontal="true" android:layout_marginTop="74dp"/>
-
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="How are you feeling right now?"
+            android:id="@+id/displayQuestion" android:layout_below="@+id/helloTextView"
+            android:layout_alignStart="@+id/helloTextView"
+            android:layout_alignEnd="@+id/userNameTextView"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/dqIconButton"
+            android:layout_below="@+id/displayQuestion">
+        <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rateSeekBar"
+                android:max="5" android:indeterminate="false"
+                android:layout_marginBottom="200dp"
+                android:layout_marginLeft="50dp" android:layout_marginRight="50dp"
+                android:layout_alignParentBottom="true" android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" android:layout_marginTop="20dp"/>
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/sadIcon"
+                android:src="@drawable/sad_face"
+                android:layout_above="@+id/rateSeekBar" android:layout_alignStart="@+id/rateSeekBar"
+                android:layout_marginTop="20dp"/>
+        <ImageView
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:id="@+id/happyIcon"
+                android:src="@drawable/happy_face"
+                android:layout_alignBottom="@+id/sadIcon" android:layout_alignEnd="@+id/rateSeekBar"
+                android:layout_marginTop="20dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Value: "
+                android:id="@+id/value"
+            android:layout_marginTop="43dp"
+            android:layout_alignTop="@+id/rateSeekBar"
+            android:layout_alignStart="@+id/submitButton" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Integer"
+                android:id="@+id/seekBarValueTextView"
+                android:layout_alignTop="@+id/value" android:layout_toEndOf="@+id/value"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/submitButton"
+            android:textColor="#ffffff"
+                android:textStyle="bold" android:textSize="15dp"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/value"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 </RelativeLayout>
