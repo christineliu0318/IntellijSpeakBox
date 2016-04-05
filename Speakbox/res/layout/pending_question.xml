@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:textAlignment="center" android:id="@+id/pqFragment">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanks, "
+            android:id="@+id/helloTextView" android:layout_alignParentTop="true" android:layout_alignParentStart="false"
+            android:layout_marginStart="50dp" android:layout_marginTop="110dp" android:textSize="40dp"
+            android:layout_alignParentEnd="false" android:layout_marginLeft="50dp"
+        android:textStyle="bold" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Name"
+            android:id="@+id/userNameTextView"
+            android:textSize="40dp" android:layout_alignTop="@+id/helloTextView"
+            android:layout_alignParentEnd="true" android:layout_marginRight="50dp"
+            android:layout_toEndOf="@+id/helloTextView"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="We will talk to you later!"
+            android:id="@+id/displayQuestion" android:layout_below="@+id/helloTextView"
+            android:layout_alignStart="@+id/helloTextView"
+            android:layout_alignEnd="@+id/userNameTextView"/>
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.SpeakBox;
+package speakbox.util;
 
 /**
  * Created by Christine on 3/31/2016.
@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
-import java.util.Random;
+import com.example.SpeakBox.R;
 
 public class CheckRecentRun extends Service {
 
