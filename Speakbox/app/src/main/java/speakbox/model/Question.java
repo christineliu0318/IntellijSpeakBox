@@ -17,10 +17,10 @@ public class Question {
     }
 
     // should probably be placed in the QuestionDisplayFragment
-    public void userAnswersQuestion(User user) {
-        Double answer = 5.00; //whatever the user inputs into the text view
+/*    public void userAnswersQuestion(User user) {
+        String answer = "5"; //whatever the user inputs into the text view
         response = new Response(questionId, answer, user);
-    }
+    }*/
 
     public String getQuestion() {
         return question;
