@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.SpeakBox.R;
+import com.firebase.client.Firebase;
+
 import speakbox.ui.QuestionDisplayFragment;
 
 
@@ -45,6 +47,9 @@ public class SpeakBox extends Activity {
         // Save time of run:
         settings = getSharedPreferences(PREFS, MODE_PRIVATE);
         editor = settings.edit();
+
+        //FIREBASE CODE
+        Firebase.setAndroidContext(this);
 
         // First time running app?
         if (!settings.contains("lastRun"))

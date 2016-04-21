@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             android:text="Hello,  "
             android:id="@+id/helloTextView" android:layout_alignParentTop="true" android:layout_alignParentStart="false"
-            android:layout_marginStart="50dp" android:layout_marginTop="110dp" android:textSize="40dp"
+            android:layout_marginStart="50dp" android:layout_marginTop="110dp" android:textSize="25dp"
             android:layout_alignParentEnd="false" android:layout_marginLeft="50dp"
         android:textStyle="bold" />
     <TextView
@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Name"
             android:id="@+id/userNameTextView"
-            android:textSize="40dp" android:layout_alignTop="@+id/helloTextView"
+            android:textSize="25dp" android:layout_alignTop="@+id/helloTextView"
             android:layout_alignParentEnd="true" android:layout_marginRight="50dp"
             android:layout_toEndOf="@+id/helloTextView"/>
     <TextView
@@ -28,7 +28,8 @@
             android:text="How are you feeling right now?"
             android:id="@+id/displayQuestion" android:layout_below="@+id/helloTextView"
             android:layout_alignStart="@+id/helloTextView"
-            android:layout_alignEnd="@+id/userNameTextView"/>
+            android:layout_alignEnd="@+id/userNameTextView"
+        android:textSize="18dp" />
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/dqIconButton"
@@ -47,8 +48,9 @@
                 android:layout_height="50dp"
                 android:id="@+id/sadIcon"
                 android:src="@drawable/sad_face"
-                android:layout_above="@+id/rateSeekBar" android:layout_alignStart="@+id/rateSeekBar"
-                android:layout_marginTop="20dp"/>
+            android:layout_alignStart="@+id/rateSeekBar"
+                android:layout_marginTop="20dp"
+            android:layout_above="@+id/value" />
         <ImageView
                 android:layout_width="51dp"
                 android:layout_height="51dp"

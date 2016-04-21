@@ -1,0 +1,87 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea/
+* .idea/.name
+* .idea/codeStyleSettings.xml
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/encodings.xml
+* .idea/inspectionProfiles/
+* .idea/inspectionProfiles/Project_Default.xml
+* .idea/inspectionProfiles/profiles_settings.xml
+* .idea/libraries/
+* .idea/libraries/mpandroidchartlibrary_2_2_4.xml
+* .idea/libraries/opencsv_3_7.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/workspace.xml
+* SpeakBox.iml
+* ant.properties
+* build.xml
+* out/
+* out/production/
+* out/production/SpeakBox/
+* out/production/SpeakBox/SpeakBox.apk
+* out/production/SpeakBox/SpeakBox.unaligned.apk
+* out/production/SpeakBox/com/
+* out/production/SpeakBox/com/example/
+* out/production/SpeakBox/com/example/SpeakBox/
+* out/production/SpeakBox/com/example/SpeakBox/BuildConfig.class
+* out/production/SpeakBox/com/example/SpeakBox/R$attr.class
+* out/production/SpeakBox/com/example/SpeakBox/R$color.class
+* out/production/SpeakBox/com/example/SpeakBox/R$drawable.class
+* out/production/SpeakBox/com/example/SpeakBox/R$id.class
+* out/production/SpeakBox/com/example/SpeakBox/R$layout.class
+* out/production/SpeakBox/com/example/SpeakBox/R$string.class
+* out/production/SpeakBox/com/example/SpeakBox/R$style.class
+* out/production/SpeakBox/com/example/SpeakBox/R.class
+* out/production/SpeakBox/speakbox/
+* out/production/SpeakBox/speakbox/model/
+* out/production/SpeakBox/speakbox/model/Question.class
+* out/production/SpeakBox/speakbox/model/QuestionList.class
+* out/production/SpeakBox/speakbox/model/Response.class
+* out/production/SpeakBox/speakbox/model/User.class
+* out/production/SpeakBox/speakbox/ui/
+* out/production/SpeakBox/speakbox/ui/PendingQuestionFragment.class
+* out/production/SpeakBox/speakbox/ui/QuestionDisplayFragment$1.class
+* out/production/SpeakBox/speakbox/ui/QuestionDisplayFragment$2.class
+* out/production/SpeakBox/speakbox/ui/QuestionDisplayFragment.class
+* out/production/SpeakBox/speakbox/util/
+* out/production/SpeakBox/speakbox/util/Chart.class
+* out/production/SpeakBox/speakbox/util/CheckRecentRun.class
+* out/production/SpeakBox/speakbox/util/SpeakBox.class
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/mpandroidchartlibrary-2-2-4.jar => app/libs/mpandroidchartlibrary-2-2-4.jar
+* libs/opencsv-3.7.jar => app/libs/opencsv-3.7.jar
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
