@@ -1,9 +1,7 @@
 package speakbox.ui;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +11,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import com.example.SpeakBox.R;
 import com.firebase.client.Firebase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import speakbox.model.Response;
 import speakbox.util.Constants;
@@ -81,15 +82,22 @@ public class QuestionDisplayFragment extends Fragment{
     }
 
     private void submitResponse() {
-        Firebase ref = new Firebase(Constants.FIREBASE_URL);
+        Firebase ref = new Firebase(Constants.FIREBASE_URL).child("responses");
         String userEnteredName = userName.getText().toString();
         String response = seekBarValue.getText().toString();
-        Response currentResponse = new Response("testId", response, userEnteredName);
-        ref.child("users/" + userEnteredName + "/responses").setValue(currentResponse);
+
+        Map<String, Object> responses = new HashMap<>();
+
+        Response currentResponse = new Response("testId", response);
+        responses.put("responseObj", currentResponse);
+        responses.put("user", userEnteredName);
+
+
+        ref.push().setValue(responses);
     }
 
     private void replaceFragment() {
-        Fragment newFragment = new PendingQuestionFragment();
+        Fragment newFragment = PendingQuestionFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         transaction.replace(R.id.layout, newFragment);

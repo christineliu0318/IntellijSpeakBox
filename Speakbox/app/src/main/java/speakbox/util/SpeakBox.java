@@ -54,12 +54,10 @@ public class SpeakBox extends Activity {
         startService(new Intent(this, CheckRecentRun.class));
     }
 
-
     private void addFragment() {
         Fragment fg = QuestionDisplayFragment.newInstance();
         getFragmentManager().beginTransaction().add(R.id.layout, fg).commit();
     }
-
 
     private void recordRunTime() {
         editor.putLong("lastRun", System.currentTimeMillis());
