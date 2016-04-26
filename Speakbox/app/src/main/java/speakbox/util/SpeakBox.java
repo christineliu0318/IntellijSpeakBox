@@ -1,6 +1,7 @@
 package speakbox.util;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -34,22 +35,14 @@ public class SpeakBox extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        addFragment();
 
-        //FRAGMENT CODE
-        Configuration config = getResources().getConfiguration();
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        QuestionDisplayFragment qdFragment = new QuestionDisplayFragment();
-        fragmentTransaction.replace(android.R.id.content, qdFragment);
+        //FIREBASE CODE
+        Firebase.setAndroidContext(this);
 
         // Save time of run:
         settings = getSharedPreferences(PREFS, MODE_PRIVATE);
         editor = settings.edit();
-
-        //FIREBASE CODE
-        Firebase.setAndroidContext(this);
 
         // First time running app?
         if (!settings.contains("lastRun"))
@@ -58,15 +51,22 @@ public class SpeakBox extends Activity {
             recordRunTime();
 
         Log.v(TAG, "Starting CheckRecentRun service...");
-        startService(new Intent(this,  CheckRecentRun.class));
+        startService(new Intent(this, CheckRecentRun.class));
     }
 
-    public void recordRunTime() {
+
+    private void addFragment() {
+        Fragment fg = QuestionDisplayFragment.newInstance();
+        getFragmentManager().beginTransaction().add(R.id.layout, fg).commit();
+    }
+
+
+    private void recordRunTime() {
         editor.putLong("lastRun", System.currentTimeMillis());
         editor.commit();
     }
 
-    public void enableNotification(View v) {
+    private void enableNotification(View v) {
         editor.putLong("lastRun", System.currentTimeMillis());
         editor.putBoolean("enabled", true);
         editor.commit();

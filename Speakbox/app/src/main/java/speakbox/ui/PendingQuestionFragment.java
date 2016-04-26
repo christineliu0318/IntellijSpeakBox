@@ -7,4 +7,6 @@ import android.app.Fragment;
  * The message that shows on screen when it is not yet time for user to answer question
  */
 public class PendingQuestionFragment extends Fragment {
+
+
 }

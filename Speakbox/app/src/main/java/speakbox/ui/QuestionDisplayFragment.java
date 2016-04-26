@@ -1,6 +1,9 @@
 package speakbox.ui;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +28,14 @@ public class QuestionDisplayFragment extends Fragment{
     TextView seekBarValue;
     Button submitReponse;
 
+    public static QuestionDisplayFragment newInstance() {
+        QuestionDisplayFragment qdFragment = new QuestionDisplayFragment();
+        return qdFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -59,6 +66,7 @@ public class QuestionDisplayFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 submitResponse();
+                replaceFragment();
             }
         });
 
@@ -77,6 +85,14 @@ public class QuestionDisplayFragment extends Fragment{
         String userEnteredName = userName.getText().toString();
         String response = seekBarValue.getText().toString();
         Response currentResponse = new Response("testId", response, userEnteredName);
-        ref.child("activeResponse").setValue(currentResponse);
+        ref.child("users/" + userEnteredName + "/responses").setValue(currentResponse);
+    }
+
+    private void replaceFragment() {
+        Fragment newFragment = new PendingQuestionFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.layout, newFragment);
+        transaction.commit();
     }
 }
