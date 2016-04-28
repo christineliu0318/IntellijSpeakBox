@@ -1,5 +1,6 @@
 package speakbox.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -42,6 +43,9 @@ public class CreateAccountActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 createAccount();
+                Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

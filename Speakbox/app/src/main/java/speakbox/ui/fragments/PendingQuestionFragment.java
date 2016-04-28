@@ -63,7 +63,7 @@ public class PendingQuestionFragment extends Fragment {
         AuthData ad = fb.getAuth();
         String uid = ad.getUid();
 
-        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/Users/" + uid + "/name");
+        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/users/" + uid + "/name");
 
         userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

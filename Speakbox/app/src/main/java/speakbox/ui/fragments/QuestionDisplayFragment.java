@@ -117,13 +117,15 @@ public class QuestionDisplayFragment extends Fragment{
         AuthData ad = fb.getAuth();
         String uid = ad.getUid();
 
-        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/Users/" + uid + "/name");
+        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/users/" + uid + "/name");
 
         userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                userFirstName = dataSnapshot.getValue().toString();
-                userName.setText(userFirstName);
+                if (dataSnapshot.getValue() != null) {
+                    userFirstName = dataSnapshot.getValue().toString();
+                    userName.setText(userFirstName);
+                }
             }
 
             @Override
