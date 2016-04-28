@@ -3,13 +3,14 @@ package speakbox.ui;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.view.View;
 
 
 import com.example.SpeakBox.R;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
+import speakbox.ui.fragments.ChartFragment;
 import speakbox.ui.fragments.QuestionDisplayFragment;
 import speakbox.ui.login.LoginActivity;
 
@@ -43,7 +44,18 @@ public class MainActivity extends BaseActivity {
 
     public void addFragment() {
         Fragment fg = QuestionDisplayFragment.newInstance();
-        getFragmentManager().beginTransaction().add(R.id.layout, fg).commit();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fg).commit();
     }
+
+    public void displayChart(View v){
+        Fragment fg = ChartFragment.newInstance();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fg).commit();
+    }
+
+    public void displayQuestion(View v){
+        Fragment fg = QuestionDisplayFragment.newInstance();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fg).commit();
+    }
+
 
 }

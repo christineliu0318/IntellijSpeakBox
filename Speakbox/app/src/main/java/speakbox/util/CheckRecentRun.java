@@ -16,6 +16,7 @@ import android.util.Log;
 import com.example.SpeakBox.R;
 
 import speakbox.ui.BaseActivity;
+import speakbox.ui.MainActivity;
 
 public class CheckRecentRun extends Service {
 
@@ -66,7 +67,7 @@ public class CheckRecentRun extends Service {
 
     public void sendNotification() {
 
-        Intent mainIntent = new Intent(this, BaseActivity.class);
+        Intent mainIntent = new Intent(this, MainActivity.class);
         @SuppressWarnings("deprecation")
         Notification noti = new Notification.Builder(this)
                 .setAutoCancel(true)

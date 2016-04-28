@@ -107,7 +107,7 @@ public class QuestionDisplayFragment extends Fragment{
         Fragment newFragment = PendingQuestionFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.layout, newFragment);
+        transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
     }
 
