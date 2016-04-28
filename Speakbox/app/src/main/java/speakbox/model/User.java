@@ -2,6 +2,7 @@ package speakbox.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,40 +12,31 @@ import java.util.List;
 
 public class User {
     private String name;
-    private String gender;
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String email;
-    private List<Response> responses;
+    private HashMap<String, Object> timeStamp;
 
-    public User(String name, String gender, Date dateOfBirth, String email) {
+    public User(String name, String dateOfBirth, String email, HashMap<String, Object> timeStamp) {
         this.name = name;
-        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.responses = new ArrayList<>();
-    }
-
-    public void addResponse(Response response) {
-        responses.add(response);
+        this.timeStamp = timeStamp;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public HashMap<String, Object> getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

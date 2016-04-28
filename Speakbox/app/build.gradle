@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.example.SpeakBox"
+        applicationId "com.example.BaseActivity"
         minSdkVersion 21
         targetSdkVersion 21
     }

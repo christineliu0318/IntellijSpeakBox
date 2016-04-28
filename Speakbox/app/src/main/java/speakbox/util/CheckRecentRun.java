@@ -15,6 +15,8 @@ import android.os.IBinder;
 import android.util.Log;
 import com.example.SpeakBox.R;
 
+import speakbox.ui.BaseActivity;
+
 public class CheckRecentRun extends Service {
 
     private final static String TAG = "CheckRecentPlay";
@@ -31,7 +33,7 @@ public class CheckRecentRun extends Service {
         super.onCreate();
 
         Log.v(TAG, "Service started");
-        SharedPreferences settings = getSharedPreferences(SpeakBox.PREFS, MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS, MODE_PRIVATE);
 
         // Are notifications enabled?
         if (settings.getBoolean("enabled", true)) {
@@ -64,17 +66,17 @@ public class CheckRecentRun extends Service {
 
     public void sendNotification() {
 
-        Intent mainIntent = new Intent(this, SpeakBox.class);
+        Intent mainIntent = new Intent(this, BaseActivity.class);
         @SuppressWarnings("deprecation")
         Notification noti = new Notification.Builder(this)
                 .setAutoCancel(true)
                 .setContentIntent(PendingIntent.getActivity(this, 131314, mainIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentTitle("How are you feeling?")
-                .setContentText("Check in with your SpeakBox and continue to track your mental health!")
+                .setContentText("Check in with your BaseActivity and continue to track your mental health!")
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setTicker("How are you feeling? Check in with your SpeakBox and .")
+                .setTicker("How are you feeling? Check in with your BaseActivity and .")
                 .setWhen(System.currentTimeMillis())
                 .getNotification();
 

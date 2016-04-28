@@ -24,10 +24,10 @@ import speakbox.util.Constants;
  */
 public class QuestionDisplayFragment extends Fragment{
 
-    TextView userName;
-    SeekBar seekBar;
-    TextView seekBarValue;
-    Button submitReponse;
+    private TextView userName;
+    private SeekBar seekBar;
+    private TextView seekBarValue;
+    private Button submitReponse;
 
     public static QuestionDisplayFragment newInstance() {
         QuestionDisplayFragment qdFragment = new QuestionDisplayFragment();

@@ -29,5 +29,5 @@
             android:text="We will talk to you later!"
             android:id="@+id/displayMessage" android:layout_below="@+id/helloTextView"
             android:layout_alignStart="@+id/helloTextView"
-        android:textSize="25dp" />
+        android:textSize="18dp" />
 </RelativeLayout>

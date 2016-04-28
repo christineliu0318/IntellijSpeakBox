@@ -35,43 +35,44 @@
             android:layout_height="match_parent" android:id="@+id/dqIconButton"
             android:layout_below="@+id/displayMessage">
         <SeekBar
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rateSeekBar"
                 android:max="5" android:indeterminate="false"
-                android:layout_marginBottom="200dp"
-                android:layout_marginLeft="50dp" android:layout_marginRight="50dp"
-                android:layout_alignParentBottom="true" android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true" android:layout_marginTop="20dp"/>
+            android:layout_marginLeft="50dp" android:layout_marginRight="50dp"
+            android:layout_below="@+id/happyIcon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
         <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/sadIcon"
                 android:src="@drawable/sad_face"
+            android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/rateSeekBar"
-                android:layout_marginTop="20dp"
-            android:layout_above="@+id/value" />
+            android:layout_marginTop="50dp" />
         <ImageView
                 android:layout_width="51dp"
                 android:layout_height="51dp"
                 android:id="@+id/happyIcon"
                 android:src="@drawable/happy_face"
-                android:layout_alignBottom="@+id/sadIcon" android:layout_alignEnd="@+id/rateSeekBar"
-                android:layout_marginTop="20dp"/>
+            android:layout_alignTop="@+id/sadIcon"
+            android:layout_alignEnd="@+id/rateSeekBar" />
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Value: "
                 android:id="@+id/value"
-            android:layout_marginTop="43dp"
-            android:layout_alignTop="@+id/rateSeekBar"
-            android:layout_alignStart="@+id/submitButton" />
+            android:layout_gravity="center|left"
+            android:layout_below="@+id/rateSeekBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Integer"
+                android:text="0"
                 android:id="@+id/seekBarValueTextView"
                 android:layout_alignTop="@+id/value" android:layout_toEndOf="@+id/value"/>
         <Button
@@ -83,6 +84,7 @@
                 android:textStyle="bold" android:textSize="15dp"
             android:layout_marginTop="22dp"
             android:layout_below="@+id/value"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center" />
     </RelativeLayout>
 </RelativeLayout>

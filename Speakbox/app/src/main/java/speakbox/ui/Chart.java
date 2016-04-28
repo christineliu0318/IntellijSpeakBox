@@ -1,4 +1,4 @@
-package speakbox.util;
+package speakbox.ui;
 
 import android.app.Activity;
 import android.graphics.Color;

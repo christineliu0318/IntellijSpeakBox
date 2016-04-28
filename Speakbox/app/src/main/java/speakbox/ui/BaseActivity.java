@@ -1,26 +1,26 @@
-package speakbox.util;
+package speakbox.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.SpeakBox.R;
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
-import speakbox.ui.QuestionDisplayFragment;
+import speakbox.ui.login.LoginActivity;
+import speakbox.util.CheckRecentRun;
+import speakbox.util.Constants;
 
 
 /**
  * Main Activity
  */
 
-public class SpeakBox extends Activity {
+public class BaseActivity extends Activity {
 
     private final static String TAG = "MainActivity";
     public final static String PREFS = "PrefsFile";
@@ -28,17 +28,34 @@ public class SpeakBox extends Activity {
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
 
+    private Firebase fb;
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        addFragment();
 
         //FIREBASE CODE
         Firebase.setAndroidContext(this);
+
+        fb = new Firebase(Constants.FIREBASE_URL);
+
+        fb.addAuthStateListener(new Firebase.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(AuthData authData) {
+                if (authData != null) {
+                    //user is logged in
+                    Intent intent = new Intent(BaseActivity.this, MainActivity.class);
+
+                } else {
+                    //user is not logged in
+                    Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         // Save time of run:
         settings = getSharedPreferences(PREFS, MODE_PRIVATE);
@@ -54,17 +71,18 @@ public class SpeakBox extends Activity {
         startService(new Intent(this, CheckRecentRun.class));
     }
 
-    private void addFragment() {
+
+    public void addFragment() {
         Fragment fg = QuestionDisplayFragment.newInstance();
         getFragmentManager().beginTransaction().add(R.id.layout, fg).commit();
     }
 
-    private void recordRunTime() {
+    public void recordRunTime() {
         editor.putLong("lastRun", System.currentTimeMillis());
         editor.commit();
     }
 
-    private void enableNotification(View v) {
+    public void enableNotification(View v) {
         editor.putLong("lastRun", System.currentTimeMillis());
         editor.putBoolean("enabled", true);
         editor.commit();
