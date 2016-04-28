@@ -1,6 +1,5 @@
 package speakbox.ui.login;
 
-import android.app.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,34 +8,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.SpeakBox.R;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-
 import speakbox.ui.BaseActivity;
-import speakbox.util.Constants;
+import speakbox.ui.MainActivity;
+
 
 
 /**
  * Created by YingYing on 16-04-26.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity{
 
-    private Firebase fb;
     private LinearLayout linearLayoutLoginActivity;
     private EditText usernameI, passwordI;
     private TextView showError, register;
     private Button loginButton;
+    private AuthData ad;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         initializeScreen();
-
-        fb = new Firebase(Constants.FIREBASE_URL);
 
         loginButton.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -55,7 +51,6 @@ public class LoginActivity extends Activity {
         });
     }
 
-
     public void initializeScreen() {
         linearLayoutLoginActivity = (LinearLayout) findViewById(R.id.loginScreen);
         usernameI = (EditText) findViewById(R.id.usernameInput);
@@ -72,11 +67,10 @@ public class LoginActivity extends Activity {
         fb.authWithPassword(username, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
-                System.out.println("Whhhhyyyyyyyyyy????");
                 if (authData != null) {
                 /* Go to main activity */
-                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    ad = authData;
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -99,6 +93,10 @@ public class LoginActivity extends Activity {
             }
         });
 
+    }
+
+    public AuthData getAuthData(){
+        return ad;
     }
 
 }

@@ -1,4 +1,4 @@
-package speakbox.ui;
+package speakbox.ui.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.SpeakBox.R;
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import speakbox.ui.MainActivity;
+import speakbox.util.Constants;
 
 /**
  * Created by YingYing on 2016-04-03.
@@ -15,9 +23,10 @@ import com.example.SpeakBox.R;
  */
 public class PendingQuestionFragment extends Fragment {
 
-    TextView thanks;
-    TextView username;
-    TextView message;
+    private TextView thanks;
+    private TextView username;
+    private TextView message;
+    private String userFirstName;
 
     public static PendingQuestionFragment newInstance() {
         PendingQuestionFragment pqFragment = new PendingQuestionFragment();
@@ -34,17 +43,40 @@ public class PendingQuestionFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.pending_question, container, false);
         initializeScreen(rootView);
 
+        getUserFirstName();
+
         thanks.setText("Thanks, ");
-        username.setText("Ying Ying"); // the user's name
         message.setText("We'll talk to you later!");
 
         return rootView;
     }
 
-    private void initializeScreen(View rootView) {
+    public void initializeScreen(View rootView) {
         thanks = (TextView) rootView.findViewById(R.id.helloTextView);
         username = (TextView) rootView.findViewById(R.id.userNameTextView);
         message = (TextView) rootView.findViewById(R.id.displayMessage);
+    }
+
+    private void getUserFirstName() {
+
+        Firebase fb = new Firebase(Constants.FIREBASE_URL);
+        AuthData ad = fb.getAuth();
+        String uid = ad.getUid();
+
+        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/Users/" + uid + "/name");
+
+        userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFirstName = dataSnapshot.getValue().toString();
+                username.setText(userFirstName);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("didn't work");
+            }
+        });
     }
 
 }

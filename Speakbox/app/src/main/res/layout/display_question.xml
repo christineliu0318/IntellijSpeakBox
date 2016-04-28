@@ -16,8 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Name"
-            android:id="@+id/userNameTextView"
+        android:id="@+id/userNameTextView"
             android:textSize="25dp" android:layout_alignTop="@+id/helloTextView"
             android:layout_alignParentEnd="true" android:layout_marginRight="50dp"
             android:layout_toEndOf="@+id/helloTextView"/>

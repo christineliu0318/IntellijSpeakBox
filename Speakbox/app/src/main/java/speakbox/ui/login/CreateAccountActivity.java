@@ -1,6 +1,5 @@
 package speakbox.ui.login;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import android.view.View;
@@ -18,20 +17,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import speakbox.model.User;
+import speakbox.ui.BaseActivity;
 import speakbox.util.Constants;
 
 /**
  * Created by YingYing on 16-04-26.
  */
-public class CreateAccountActivity extends Activity {
+public class CreateAccountActivity extends BaseActivity {
 
     private EditText firstNameI, emailI, birthDateI, passwordI;
     private Button register;
-    private Firebase fb;
     private String firstName, email, birthDate;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
@@ -77,7 +76,7 @@ public class CreateAccountActivity extends Activity {
 
     public void createUserInFirebase(String uid) {
 
-        final Firebase userLocation = new Firebase(Constants.FIREBASE_URL+"/Users").child(uid);
+        final Firebase userLocation = new Firebase(Constants.FIREBASE_URL+"/users").child(uid);
 
         userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -86,7 +85,7 @@ public class CreateAccountActivity extends Activity {
                 if (dataSnapshot.getValue() == null) {
                  /* Set raw version of date to the ServerValue.TIMESTAMP value and save into dateCreatedMap */
                     HashMap<String, Object> timestampJoined = new HashMap<>();
-                    timestampJoined.put("timestamp", ServerValue.TIMESTAMP);
+                    timestampJoined.put("timeOfAccountCreation", ServerValue.TIMESTAMP);
 
                     birthDate = birthDateI.getText().toString();
                     firstName = firstNameI.getText().toString();

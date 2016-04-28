@@ -17,18 +17,18 @@ import speakbox.util.Constants;
 
 
 /**
- * Main Activity
+ * BaseActivity - All other activites to extend from this
  */
 
 public class BaseActivity extends Activity {
 
-    private final static String TAG = "MainActivity";
+    private final static String TAG = "BaseActivity";
     public final static String PREFS = "PrefsFile";
 
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
 
-    private Firebase fb;
+    protected Firebase fb;
 
     /**
      * Called when the activity is first created.
@@ -41,21 +41,6 @@ public class BaseActivity extends Activity {
         Firebase.setAndroidContext(this);
 
         fb = new Firebase(Constants.FIREBASE_URL);
-
-        fb.addAuthStateListener(new Firebase.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(AuthData authData) {
-                if (authData != null) {
-                    //user is logged in
-                    Intent intent = new Intent(BaseActivity.this, MainActivity.class);
-
-                } else {
-                    //user is not logged in
-                    Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
 
         // Save time of run:
         settings = getSharedPreferences(PREFS, MODE_PRIVATE);
@@ -72,11 +57,6 @@ public class BaseActivity extends Activity {
     }
 
 
-    public void addFragment() {
-        Fragment fg = QuestionDisplayFragment.newInstance();
-        getFragmentManager().beginTransaction().add(R.id.layout, fg).commit();
-    }
-
     public void recordRunTime() {
         editor.putLong("lastRun", System.currentTimeMillis());
         editor.commit();
@@ -88,6 +68,11 @@ public class BaseActivity extends Activity {
         editor.commit();
         Log.v(TAG, "Notifications enabled");
     }
+
+    public void logout(View v) {
+        fb.unauth();
+    }
+    
 
 //    public void disableNotification(View v) {
 //        editor.putBoolean("enabled", false);

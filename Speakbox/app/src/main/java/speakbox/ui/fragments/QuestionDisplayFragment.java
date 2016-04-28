@@ -1,4 +1,4 @@
-package speakbox.ui;
+package speakbox.ui.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -10,12 +10,17 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.example.SpeakBox.R;
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import speakbox.model.Response;
+
 import speakbox.util.Constants;
 
 /**
@@ -27,7 +32,9 @@ public class QuestionDisplayFragment extends Fragment{
     private TextView userName;
     private SeekBar seekBar;
     private TextView seekBarValue;
-    private Button submitReponse;
+    private Button submitResponse;
+    private String userFirstName;
+
 
     public static QuestionDisplayFragment newInstance() {
         QuestionDisplayFragment qdFragment = new QuestionDisplayFragment();
@@ -44,7 +51,7 @@ public class QuestionDisplayFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.display_question, container, false);
         initializeScreen(rootView);
 
-        userName.setText("Ying Ying"); // the user's name
+        getUserFirstName();
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -63,7 +70,7 @@ public class QuestionDisplayFragment extends Fragment{
             }
         });
 
-        submitReponse.setOnClickListener(new Button.OnClickListener() {
+        submitResponse.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 submitResponse();
@@ -78,7 +85,7 @@ public class QuestionDisplayFragment extends Fragment{
         userName = (TextView) rootView.findViewById(R.id.userNameTextView);
         seekBar = (SeekBar) rootView.findViewById(R.id.rateSeekBar);
         seekBarValue = (TextView) rootView.findViewById(R.id.seekBarValueTextView);
-        submitReponse = (Button) rootView.findViewById(R.id.submitButton);
+        submitResponse = (Button) rootView.findViewById(R.id.submitButton);
     }
 
     private void submitResponse() {
@@ -103,4 +110,28 @@ public class QuestionDisplayFragment extends Fragment{
         transaction.replace(R.id.layout, newFragment);
         transaction.commit();
     }
+
+    private void getUserFirstName() {
+
+        Firebase fb = new Firebase(Constants.FIREBASE_URL);
+        AuthData ad = fb.getAuth();
+        String uid = ad.getUid();
+
+        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/Users/" + uid + "/name");
+
+        userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFirstName = dataSnapshot.getValue().toString();
+                userName.setText(userFirstName);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("didn't work");
+            }
+        });
+    }
+
+
 }
