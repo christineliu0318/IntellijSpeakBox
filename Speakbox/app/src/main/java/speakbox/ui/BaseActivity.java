@@ -68,10 +68,6 @@ public class BaseActivity extends Activity {
         editor.commit();
         Log.v(TAG, "Notifications enabled");
     }
-
-    public void logout(View v) {
-        fb.unauth();
-    }
     
 
 //    public void disableNotification(View v) {

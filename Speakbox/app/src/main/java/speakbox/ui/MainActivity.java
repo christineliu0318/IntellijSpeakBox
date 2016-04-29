@@ -57,5 +57,8 @@ public class MainActivity extends BaseActivity {
         getFragmentManager().beginTransaction().replace(R.id.fragment_container,fg).commit();
     }
 
+    public void logout(View v) {
+        fb.unauth();
+    }
 
 }

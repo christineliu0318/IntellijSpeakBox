@@ -114,25 +114,29 @@ public class QuestionDisplayFragment extends Fragment{
     private void getUserFirstName() {
 
         Firebase fb = new Firebase(Constants.FIREBASE_URL);
-        AuthData ad = fb.getAuth();
-        String uid = ad.getUid();
 
-        Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/users/" + uid + "/name");
+        if (fb.getAuth() != null) {
 
-        userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() != null) {
-                    userFirstName = dataSnapshot.getValue().toString();
-                    userName.setText(userFirstName);
+            AuthData ad = fb.getAuth();
+            String uid = ad.getUid();
+
+            Firebase userLocation = new Firebase(Constants.FIREBASE_URL + "/users/" + uid + "/name");
+
+            userLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue() != null) {
+                        userFirstName = dataSnapshot.getValue().toString();
+                        userName.setText(userFirstName);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("didn't work");
-            }
-        });
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                    System.out.println("didn't work");
+                }
+            });
+        }
     }
 
 
