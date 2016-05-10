@@ -89,18 +89,34 @@ public class QuestionDisplayFragment extends Fragment {
     }
 
     private void submitResponse() {
-        Firebase ref = new Firebase(Constants.FIREBASE_URL).child("responses");
+        Firebase fb = new Firebase(Constants.FIREBASE_URL);
+        AuthData ad = fb.getAuth();
+        String uid = ad.getUid();
+        Firebase ref = new Firebase(Constants.FIREBASE_URL+"/responses/"+ uid);
         String userEnteredName = userName.getText().toString();
         String response = seekBarValue.getText().toString();
 
-        Map<String, Object> responses = new HashMap<>();
 
-        Response currentResponse = new Response("testId", response);
-        responses.put("responseObj", currentResponse);
-        responses.put("user", userEnteredName);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Firebase fb = new Firebase(Constants.FIREBASE_URL);
+                AuthData ad = fb.getAuth();
+                String uid = ad.getUid();
+                String response = seekBarValue.getText().toString();
+                Firebase ref = new Firebase(Constants.FIREBASE_URL + "/responses/" + uid);
+//              Map<String, Object> responses = new HashMap<>();
+                Response currentResponse = new Response("testId", response);
+//              responses.put("responseObj", currentResponse);
+                ref.push().setValue(currentResponse);
+            }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("didn't work");
+            }
+        });
 
-        ref.push().setValue(responses);
     }
 
     private void popUp() {
