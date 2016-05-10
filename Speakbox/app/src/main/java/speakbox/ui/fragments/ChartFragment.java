@@ -8,6 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.SpeakBox.R;
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -16,6 +22,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import speakbox.model.Response;
+import speakbox.util.Constants;
 
 /**
  * Created by Christine on 4/28/2016.
@@ -50,6 +62,35 @@ public class ChartFragment extends Fragment {
     }
 
     public void retrieveData(){
+
+        Firebase fb = new Firebase(Constants.FIREBASE_URL);
+        AuthData ad = fb.getAuth();
+        String uid = ad.getUid();
+
+        final Firebase responseLocation = new Firebase(Constants.FIREBASE_URL + "/responses/" + uid);
+        Query queryRef = responseLocation.orderByValue();
+
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot response: dataSnapshot.getChildren()){
+//                    Response res = response.getValue(Response.class);
+//                    System.out.println(res.getAnswer());
+//                }
+
+                Iterator itr = dataSnapshot.getChildren().iterator();
+                while (itr.hasNext()){
+                    Object next = itr.next();
+                    System.out.println(next);
+                }
+                System.out.println(dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("didn't work");
+            }
+        });
         xVals = new ArrayList<>();
         xVals.add("1");
         xVals.add("2");
