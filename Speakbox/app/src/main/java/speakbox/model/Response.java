@@ -12,6 +12,9 @@ public class Response {
     private String answer;
     private String questionId;
 
+    public Response(){
+        // empty default constructor, necessary for Firebase to be able to deserialize blog posts
+    }
 
     public Response(String questionId, String answer) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");

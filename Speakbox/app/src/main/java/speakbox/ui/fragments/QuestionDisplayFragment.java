@@ -111,9 +111,7 @@ public class QuestionDisplayFragment extends Fragment {
                 String uid = ad.getUid();
                 String response = seekBarValue.getText().toString();
                 Firebase ref = new Firebase(Constants.FIREBASE_URL + "/responses/" + uid);
-//              Map<String, Object> responses = new HashMap<>();
                 Response currentResponse = new Response("testId", response);
-//              responses.put("responseObj", currentResponse);
                 ref.push().setValue(currentResponse);
             }
 
