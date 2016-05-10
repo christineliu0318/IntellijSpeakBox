@@ -1,17 +1,15 @@
 package speakbox.ui;
 
-import android.app.Activity;
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import com.example.SpeakBox.R;
-import com.firebase.client.AuthData;
+
 import com.firebase.client.Firebase;
 
-import speakbox.ui.login.LoginActivity;
 import speakbox.util.CheckRecentRun;
 import speakbox.util.Constants;
 
@@ -20,7 +18,7 @@ import speakbox.util.Constants;
  * BaseActivity - All other activites to extend from this
  */
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 
     private final static String TAG = "BaseActivity";
     public final static String PREFS = "PrefsFile";

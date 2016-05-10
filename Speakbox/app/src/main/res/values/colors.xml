@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryDark">#1c378e</color>
-    <color name="primary">#2a54d7</color>
-    <color name="textPrimary">#FFFFFF</color>
+    <color name="primaryDark">#42a5f5</color>
+    <color name="primary">#0091ea</color>
+    <color name="textPrimary">#cfcfcf</color>
     <color name="textSecondary">#a5a5a5</color>
-    <color name="windowBg">#FFFFFF</color>
+    <color name="windowBg">#ffffff</color>
     <color name="orange">#de7526</color>
     <color name="black">#000000</color>
-    <color name="navigBar">#000000</color>
+    <color name="navigBar">#26000000</color>
 </resources>

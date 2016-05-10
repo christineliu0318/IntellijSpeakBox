@@ -1,16 +1,17 @@
 package speakbox.ui;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
+import android.support.v4.app.FragmentTabHost;
+import android.view.View;
 
 import com.example.SpeakBox.R;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
 import speakbox.ui.fragments.ChartFragment;
+import speakbox.ui.fragments.ProfileFragment;
 import speakbox.ui.fragments.QuestionDisplayFragment;
 import speakbox.ui.login.LoginActivity;
 
@@ -18,6 +19,7 @@ import speakbox.ui.login.LoginActivity;
  * Created by YingYing on 16-04-27.
  */
 public class MainActivity extends BaseActivity {
+    private FragmentTabHost mTabHost;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,23 +40,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        setContentView(R.layout.main);
-        addFragment();
-    }
+        setContentView(R.layout.maintest);
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-    public void addFragment() {
-        Fragment fg = QuestionDisplayFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fg).commit();
-    }
-
-    public void displayChart(View v){
-        Fragment fg = ChartFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fg).commit();
-    }
-
-    public void displayQuestion(View v){
-        Fragment fg = QuestionDisplayFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fg).commit();
+        mTabHost.addTab(mTabHost.newTabSpec("question").setIndicator("Question"), QuestionDisplayFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("chart").setIndicator("Chart"), ChartFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("profile").setIndicator("Profile"), ProfileFragment.class, null);
     }
 
     public void logout(View v) {

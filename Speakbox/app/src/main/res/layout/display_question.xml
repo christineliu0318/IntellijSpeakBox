@@ -8,10 +8,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello,  "
-            android:id="@+id/helloTextView" android:layout_alignParentTop="true" android:layout_alignParentStart="false"
-            android:layout_marginStart="50dp" android:layout_marginTop="110dp" android:textSize="25dp"
-            android:layout_alignParentEnd="false" android:layout_marginLeft="50dp"
-        android:textStyle="bold" />
+            android:id="@+id/helloTextView"
+        android:layout_marginStart="49dp" android:layout_marginTop="81dp" android:textSize="25dp"
+        android:layout_marginLeft="50dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +34,8 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/dqIconButton"
-            android:layout_below="@+id/displayMessage">
+        android:layout_below="@+id/displayMessage"
+        android:layout_alignParentStart="true">
         <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,5 +88,7 @@
             android:layout_below="@+id/value"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center" />
+
     </RelativeLayout>
+
 </RelativeLayout>

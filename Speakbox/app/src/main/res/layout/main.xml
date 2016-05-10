@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:id="@+id/layout"
+              android:animateLayoutChanges="true"
               >
 
     <LinearLayout
@@ -19,53 +20,39 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Chart"
                 android:id="@+id/myChart"
                 android:onClick="displayChart" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="My Mood"
                 android:id="@+id/question"
                 android:onClick="displayQuestion" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Logout"
                 android:id="@+id/logoutButton"
                 android:onClick="logout"
-                />
+                android:layout_gravity="right" />
 
         </LinearLayout>
+
     </LinearLayout>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_below="@id/navigation"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </FrameLayout>
 
 </RelativeLayout>
