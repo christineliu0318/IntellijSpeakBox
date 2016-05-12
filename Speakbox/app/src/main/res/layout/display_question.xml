@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rateSeekBar"
-                android:max="100" android:indeterminate="false"
+                android:max="5" android:indeterminate="false"
             android:layout_marginLeft="50dp" android:layout_marginRight="50dp"
             android:layout_below="@+id/happyIcon"
             android:layout_centerHorizontal="true"

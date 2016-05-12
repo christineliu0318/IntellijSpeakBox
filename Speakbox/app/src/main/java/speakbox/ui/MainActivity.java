@@ -1,13 +1,10 @@
 package speakbox.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentTabHost;
 import android.view.View;
-import android.widget.PopupWindow;
-import android.widget.Toast;
 
 import com.example.SpeakBox.R;
 import com.firebase.client.AuthData;
@@ -51,7 +48,6 @@ public class MainActivity extends BaseActivity {
         mTabHost.addTab(mTabHost.newTabSpec("chart").setIndicator("Chart"), ChartFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("profile").setIndicator("Profile"), ProfileFragment.class, null);
     }
-
 
     public void logout(View v) {
         fb.unauth();

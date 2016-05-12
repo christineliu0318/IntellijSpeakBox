@@ -1,6 +1,5 @@
 package speakbox.ui.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,11 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.SpeakBox.R;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -25,7 +21,6 @@ import java.util.Map;
 
 import speakbox.model.Response;
 
-import speakbox.ui.MainActivity;
 import speakbox.util.Constants;
 
 /**
@@ -39,7 +34,6 @@ public class QuestionDisplayFragment extends Fragment {
     private TextView seekBarValue;
     private Button submitResponse;
     private String userFirstName;
-    private PopupWindow popup;
 
 
     public static QuestionDisplayFragment newInstance() {
@@ -95,41 +89,22 @@ public class QuestionDisplayFragment extends Fragment {
     }
 
     private void submitResponse() {
-        Firebase fb = new Firebase(Constants.FIREBASE_URL);
-        AuthData ad = fb.getAuth();
-        String uid = ad.getUid();
-        Firebase ref = new Firebase(Constants.FIREBASE_URL+"/responses/"+ uid);
+        Firebase ref = new Firebase(Constants.FIREBASE_URL).child("responses");
         String userEnteredName = userName.getText().toString();
         String response = seekBarValue.getText().toString();
 
+        Map<String, Object> responses = new HashMap<>();
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Firebase fb = new Firebase(Constants.FIREBASE_URL);
-                AuthData ad = fb.getAuth();
-                String uid = ad.getUid();
-                String response = seekBarValue.getText().toString();
-                Firebase ref = new Firebase(Constants.FIREBASE_URL + "/responses/" + uid);
-                Response currentResponse = new Response("testId", response);
-                ref.push().setValue(currentResponse);
-            }
+        Response currentResponse = new Response("testId", response);
+        responses.put("responseObj", currentResponse);
+        responses.put("user", userEnteredName);
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("didn't work");
-            }
-        });
 
+        ref.push().setValue(responses);
     }
 
-    public void popUp() {
-        Context context = getActivity().getApplicationContext();
-        CharSequence text = " Thank you for submitting your response! Check out your mood chart in the tab above.";
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+    private void popUp() {
+        //TODO: create the pop up window alerting user that their response has been recorded
     }
 
 
