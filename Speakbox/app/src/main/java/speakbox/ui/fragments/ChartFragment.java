@@ -1,6 +1,7 @@
 package speakbox.ui.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -23,8 +25,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import speakbox.model.Response;
 import speakbox.util.Constants;
@@ -36,9 +36,10 @@ public class ChartFragment extends Fragment {
 
     private LineChart chart;
     private LineDataSet set1;
-    private ArrayList<String> xVals;
-    private ArrayList<String> yValStrings;
-    private ArrayList<Entry> yValues;
+    private ArrayList<String> xAxes;
+    private ArrayList<String> responseValues;
+    private ArrayList<Entry> yAxes;
+    private int numDataPoints;
 
     public static ChartFragment newInstance() {
         ChartFragment cFragment = new ChartFragment();
@@ -55,17 +56,36 @@ public class ChartFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.chart, container, false);
         initializeScreen(rootView);
         retrieveData();
-        displayData();
         return rootView;
     }
 
     public void initializeScreen(View rootView) {
         chart = (LineChart) rootView.findViewById(R.id.chart);
-        xVals = new ArrayList<>();
-        yValStrings = new ArrayList<>();
-        yValues = new ArrayList<Entry>();
+        xAxes = new ArrayList<>();
+        responseValues = new ArrayList<>();
+        yAxes = new ArrayList<>();
+
+        // no description text
+        chart.setDescription("");
+        chart.setNoDataTextDescription("You need to provide data for the chart.");
+
+        //enable touch gestures
+        chart.setTouchEnabled(true);
+
+        // enable scaling and dragging
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
+        chart.setDrawGridBackground(false);
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        chart.setPinchZoom(true);
+
     }
 
+    /**
+     * This method retrieves the x and y values form the specified users responses. Then modifies
+     * the values to appropriate string and interger values for array lists.
+     */
     public void retrieveData(){
 
         Firebase fb = new Firebase(Constants.FIREBASE_URL);
@@ -81,11 +101,41 @@ public class ChartFragment extends Fragment {
                 Iterator<DataSnapshot> itr = dataSnapshot.getChildren().iterator();
                 while (itr.hasNext()){
                     Response next = itr.next().getValue(Response.class);
-                    xVals.add(next.getResponseDate());
-                    yValStrings.add(next.getAnswer());
+                    xAxes.add(next.getResponseDate());
+                    responseValues.add(next.getAnswer());
                 }
-                System.out.println(xVals);
-                System.out.println(yValStrings);
+                int index = 0;
+                for (String response: responseValues){
+                    float yVal = Float.parseFloat(response);
+                    Entry entry = new Entry(yVal,index);
+                    yAxes.add(entry);
+                    index ++;
+                }
+
+                set1 = new LineDataSet(yAxes, "Responses");
+                set1.setDrawCircles(false);
+                set1.setColor(Color.BLUE);
+
+                ArrayList<ILineDataSet> dataSet = new ArrayList<>();
+                dataSet.add(set1);
+
+                //TODO: Need to figure out how to incoporate dates into this.
+                ArrayList testVals = new ArrayList<>();
+                for(int i=0;i< yAxes.size();i++){
+                    testVals.add(String.valueOf(i + 1));
+                }
+
+
+                LineData data = new LineData(testVals, dataSet);
+
+
+                XAxis xAxis = chart.getXAxis();
+
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                chart.setVisibleXRangeMaximum(10);
+                chart.setData(data);
+                chart.invalidate();
+
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
@@ -93,45 +143,6 @@ public class ChartFragment extends Fragment {
             }
         });
 
-        int index = 0;
-        for (String yValue: yValStrings){
-            float yVal = Float.parseFloat(yValue);
-            Entry entry = new Entry(yVal,index);
-            yValues.add(entry);
-            index ++;
-        }
-
-        set1 = new LineDataSet(yValues, "Responses");
-        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
     }
 
-    public void displayData(){
-        ArrayList<ILineDataSet> dataSet = new ArrayList<>();
-        dataSet.add(set1);
-
-
-
-        ArrayList testVals = new ArrayList<>();
-        testVals.add("1");
-        testVals.add("2");
-        testVals.add("3");
-        testVals.add("4");
-        testVals.add("5");
-        testVals.add("6");
-        testVals.add("7");
-        testVals.add("8");
-        testVals.add("9");
-        testVals.add("10");
-        testVals.add("11");
-        testVals.add("12");
-        testVals.add("13");
-
-
-
-
-    //TODO: change the xaxis values to something that works for the graph.
-        LineData data = new LineData(testVals, dataSet);
-        chart.setData(data);
-        chart.invalidate();
-    }
 }
