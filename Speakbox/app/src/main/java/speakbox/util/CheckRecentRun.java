@@ -24,7 +24,7 @@ public class CheckRecentRun extends Service {
 //    private static long MILLISECS_PER_DAY = 86400000;
     private static long MILLISECS_PER_MIN = 60000;
     private static long leftLimit = MILLISECS_PER_MIN*60*3;
-    private static long rightLimit = MILLISECS_PER_MIN*60*3;
+    private static long rightLimit = MILLISECS_PER_MIN*60*5;
 
       private static long delay;   // 3 minutes (for testing)
 //    private static long delay = MILLISECS_PER_DAY * 3;   // 3 days
@@ -60,7 +60,7 @@ public class CheckRecentRun extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        delay = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+        delay = (long) (Math.random() * (rightLimit - leftLimit));
         am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pi);
         Log.v(TAG, "Alarm set");
     }
@@ -74,10 +74,10 @@ public class CheckRecentRun extends Service {
                 .setContentIntent(PendingIntent.getActivity(this, 131314, mainIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentTitle("How are you feeling?")
-                .setContentText("Check in with your BaseActivity and continue to track your mental health!")
+                .setContentText("Check in with your Speakbox and continue to track your mental health!")
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setTicker("How are you feeling? Check in with your BaseActivity and .")
+                .setTicker("How are you feeling?")
                 .setWhen(System.currentTimeMillis())
                 .getNotification();
 
