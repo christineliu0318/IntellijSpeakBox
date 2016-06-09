@@ -33,6 +33,7 @@ public class LoginActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         initializeScreen();
+        fb.unauth();
 
         loginButton.setOnClickListener(new Button.OnClickListener() {
             @Override

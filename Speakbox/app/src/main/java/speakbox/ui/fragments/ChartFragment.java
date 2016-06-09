@@ -127,8 +127,6 @@ public class ChartFragment extends Fragment {
         testVals.add("13");
 
 
-
-
     //TODO: change the xaxis values to something that works for the graph.
         LineData data = new LineData(testVals, dataSet);
         chart.setData(data);
