@@ -39,7 +39,6 @@ public class QuestionDisplayFragment extends Fragment {
     private TextView seekBarValue;
     private Button submitResponse;
     private String userFirstName;
-    private PopupWindow popup;
 
 
     public static QuestionDisplayFragment newInstance() {
@@ -99,8 +98,6 @@ public class QuestionDisplayFragment extends Fragment {
         AuthData ad = fb.getAuth();
         String uid = ad.getUid();
         Firebase ref = new Firebase(Constants.FIREBASE_URL+"/responses/"+ uid);
-        String userEnteredName = userName.getText().toString();
-        String response = seekBarValue.getText().toString();
 
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -125,7 +122,7 @@ public class QuestionDisplayFragment extends Fragment {
 
     public void popUp() {
         Context context = getActivity().getApplicationContext();
-        CharSequence text = " Thank you for submitting your response! Check out your mood chart in the tab above.";
+        CharSequence text = "Thank you for submitting your response! Check out your mood chart in the tab above.";
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
